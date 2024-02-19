@@ -567,43 +567,43 @@
 
 # print(reverse((1, (3, (6, (8, None))))))
 
-def binary_search(x, key, start, end):
-    if start > end:
-        return -start - 1
-    mid = (start + end) // 2
-    mid_val = x[mid]
-    if key == mid_val:
-        return mid
-    elif key < mid_val:
-        return binary_search(x, key, start, mid - 1)
-    else:
-        return binary_search(x, key, mid + 1, end)
+# def binary_search(x, key, start, end):
+#     if start > end:
+#         return -start - 1
+#     mid = (start + end) // 2
+#     mid_val = x[mid]
+#     if key == mid_val:
+#         return mid
+#     elif key < mid_val:
+#         return binary_search(x, key, start, mid - 1)
+#     else:
+#         return binary_search(x, key, mid + 1, end)
 
-# arr = [1, 3, 5]
-# print(binary_search(arr, 1, 0, len(arr) - 1))
+# # arr = [1, 3, 5]
+# # print(binary_search(arr, 1, 0, len(arr) - 1))
 
-def swap(x, old, new):
-    if(new > old):
-        i = new
-        while i != old:
-            x[i], x[i-1] = x[i-1], x[i]
-            i-=1
-    elif(new < old):
-        i = old
-        while i != new:
-            x[i], x[i-1] = x[i-1], x[i]
-            i-=1
-    return x
+# def swap(x, old, new):
+#     if(new > old):
+#         i = new
+#         while i != old:
+#             x[i], x[i-1] = x[i-1], x[i]
+#             i-=1
+#     elif(new < old):
+#         i = old
+#         while i != new:
+#             x[i], x[i-1] = x[i-1], x[i]
+#             i-=1
+#     return x
 
-# x = [2, 3, 4, 1]
-# swap(x, 3, 0)
-# print(x)
+# # x = [2, 3, 4, 1]
+# # swap(x, 3, 0)
+# # print(x)
 
-def sort(x):
-    for i in range(len(x)):
-        for j in range(i):
-            if(x[i] < x[j]):
-                swap(x, i, j)
-    return x
+# def sort(x):
+#     for i in range(len(x)):
+#         for j in range(i):
+#             if(x[i] < x[j]):
+#                 swap(x, i, j)
+#     return x
 
-print(sort([5,3,9,1,2]))
+# print(sort([5,3,9,1,2]))
