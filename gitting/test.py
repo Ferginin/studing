@@ -607,3 +607,159 @@
 #     return x
 
 # print(sort([5,3,9,1,2]))
+
+
+# def find(tree, key):
+#     if tree is None:
+#         return None
+
+#     if key == tree["key"]:
+#         return tree
+#     elif key < tree["key"]:
+#         if tree.get("left") is None:  
+#             return None
+#         return find(tree["left"], key)
+#     else:
+#         if tree.get("right") is None:  
+#             return None
+#         return find(tree["right"], key)
+# t = {
+#     "key": 2,
+#     "left": {
+#         "key": 1
+#     },
+#     "right": {
+#         "key": 3
+#     }
+# }
+
+# result = find(t, 4)
+# print(result)
+
+
+# def dfs(tree):
+#     if not tree:
+#         return
+
+#     if "left" in tree:
+#         dfs(tree["left"])
+    
+#     print(tree["key"])
+    
+#     if "right" in tree:
+#         dfs(tree["right"])
+
+# # Пример использования
+# t = {
+#     "key": 2,
+#     "left": {
+#         "key": 1
+#     },
+#     "right": {
+#         "key": 3
+#     }
+# }
+
+# dfs(t)
+
+
+# from collections import deque
+
+# def bfs(tree):
+#     if not tree:
+#         return
+    
+#     result = []
+#     queue = deque([tree])
+
+#     while queue:
+#         node = queue.popleft()
+#         result.append(node["key"])
+        
+#         if "left" in node:
+#             queue.append(node["left"])
+        
+#         if "right" in node:
+#             queue.append(node["right"])
+
+#     for val in result:
+#         print(val)
+
+# bfs({
+#     'key': 8,
+#     'left': {
+#         'key': 6,
+#         'left': {
+#             'key': 3,
+#             'left': {
+#                 'key': 1
+#             },
+#             'right': {
+#                 'key': 4
+#             }
+#         }
+#     },
+#     'right': {
+#         'key': 12,
+#         'left': {
+#             'key': 9
+#         },
+#         'right': {
+#             'key': 15
+#         }
+#     }
+# })
+
+
+# def find(ufs, key):
+#     if not ufs.get(key):
+#         return key
+#     return find(ufs, ufs[key])
+
+# # Пример использования
+# ufs = {
+#     1: 2,
+#     2: 4,
+#     3: 4,
+#     10: 9,
+#     11: 9,
+# }
+
+# print(find(ufs, 1))
+# print(find(ufs, 2))
+# print(find(ufs, 3))
+# print(find(ufs, 4))
+# print(find(ufs, 4))
+# print(find(ufs, 10))
+# print(find(ufs, 11))
+# print(find(ufs, 9))
+
+def sort(x):
+    sorted_edges = sorted(x, key=lambda edge: edge[2])
+    return sorted_edges
+
+def find(ufs, key):
+    if not ufs.get(key):
+        return key
+    return find(ufs, ufs[key])
+
+def mst(x):
+    sorted_edges = sort(x)
+    mst_edges = []
+    ufs = {}
+
+    for edge in sorted_edges:
+        node1, node2, weight = edge
+        root1 = find(ufs, node1)
+        root2 = find(ufs, node2)
+
+        if root1 != root2:
+            mst_edges.append(edge)
+            ufs[root1] = root2
+
+    return mst_edges
+
+# Пример использования
+edges = [('A', 'C', 3), ('B', 'C', 2), ('A', 'B', 1)]
+result = mst(edges)
+print(result)
